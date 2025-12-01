@@ -1,0 +1,12 @@
+# Maven 编译输出
+lab4-devops/target/
+
+# IDEA / Eclipse 等 IDE 文件（可选）
+*.iml
+.idea/
+.project
+.classpath
+.settings/
+
+# macOS
+.DS_Store

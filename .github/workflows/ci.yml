@@ -1,11 +1,19 @@
 name: Maven Tests
 
+# 允许 workflow 写入代码仓库 & 操作 PR（用于 auto-merge）
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   push:
     branches:
       - main
       - master
   pull_request:
+    branches:
+      - main
+      - master
 
 jobs:
   build-and-test:
@@ -31,3 +39,10 @@ jobs:
 
       - name: Run tests with Maven
         run: mvn -B test --file lab4-devops/pom.xml
+
+      - name: Auto-merge pull request when tests pass
+        if: ${{ github.event_name == 'pull_request' && success() }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} --merge --delete-branch
