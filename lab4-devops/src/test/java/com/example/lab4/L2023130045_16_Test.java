@@ -10,7 +10,7 @@ public class L2023130045_16_Test {
     public void testCase1() {
         int[] nums = {10, 2};
         String got = Solution16.largestNumber(nums);
-        assertEquals("201", got);
+        assertEquals("210", got);
     }
 
     // 示例 2：nums = [3,30,34,5,9] -> "9534330"
